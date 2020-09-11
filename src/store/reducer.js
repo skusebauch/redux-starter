@@ -29,8 +29,18 @@ const reducer = (state = initialState, action) => {
     case "STORE_RESULT":
       return {
         ...state,
-        // not push -concat return new array (immutable)
+        // adding item: not push -concat return new array (immutable)
         results: state.results.concat({ id: new Date(), value: state.counter }),
+      };
+    case "DELETE_RESULT":
+      // delete item: get new array with all elements that pass the condition (immutable)
+      const updatedArray = state.results.filter(
+        // action payload
+        (result) => result.id !== action.resultElementId
+      );
+      return {
+        ...state,
+        results: updatedArray,
       };
   }
   return state;
