@@ -1,6 +1,7 @@
 // global state
 const initialState = {
   counter: 0,
+  results: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         counter: state.counter - action.value,
+      };
+    case "STORE_RESULT":
+      return {
+        ...state,
+        // not push -concat return new array (immutable)
+        results: state.results.concat({ id: new Date(), value: state.counter }),
       };
   }
   return state;
