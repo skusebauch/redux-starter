@@ -6,6 +6,13 @@ const initialState = {
   results: [],
 };
 
+const deleteResult = (state, action) => {
+  const updatedArray = state.results.filter(
+    (result) => result.id !== action.resultElementId
+  );
+  return updateObject(state, { results: updatedArray });
+};
+
 const resultReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_RESULT:
@@ -13,12 +20,7 @@ const resultReducer = (state = initialState, action) => {
         results: state.results.concat({ id: new Date(), value: action.result }),
       });
     case actionTypes.DELETE_RESULT:
-      // delete item: get new array with all elements that pass the condition (immutable)
-      const updatedArray = state.results.filter(
-        // action payload
-        (result) => result.id !== action.resultElementId
-      );
-      return updateObject(state, { results: updatedArray });
+      return deleteResult(state, action);
     default:
       return state;
   }

@@ -16,22 +16,10 @@ const countReducer = (state = initialState, action) => {
     // };
     case actionTypes.DECREMENT:
       return updateObject(state, { counter: state.counter - 1 });
-    // return {
-    //   ...state,
-    //   counter: state.counter - 1,
-    // };
     case actionTypes.ADD:
       return updateObject(state, { counter: state.counter + action.value });
-    // return {
-    //   ...state,
-    //   counter: state.counter + action.value,
-    // };
     case actionTypes.SUBTRACT:
       return updateObject(state, { counter: state.counter - action.value });
-    // return {
-    //   ...state,
-    //   counter: state.counter - action.value,
-    // };
     default:
       return state;
   }
